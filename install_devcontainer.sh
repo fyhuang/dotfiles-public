@@ -4,10 +4,18 @@
 # Tags: dev
 set -e
 
+VERBOSE=0
+if [ "$1" = "-v" ]; then
+  VERBOSE=1
+fi
+
 install_file() {
   mkdir -p "$(dirname "$1")"
   base64 -d > "$1"
   chmod "$2" "$1"
+  if [ "$VERBOSE" = "1" ]; then
+    echo "$1"
+  fi
 }
 
 # Homelinks
